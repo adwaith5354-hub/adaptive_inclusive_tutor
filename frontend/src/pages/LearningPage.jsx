@@ -116,7 +116,7 @@ export default function LearningPage({ student }) {
     return (
       <div className="page narrow">
         <div className="alert">{error}</div>
-        <Link to="/home">← Back to my subjects</Link>
+        <Link to="/home">← Back to my learning</Link>
       </div>
     )
   }
@@ -137,12 +137,20 @@ export default function LearningPage({ student }) {
   )
 
   return (
-    <div className="page wide">
+    <div className="learn-page">
       {celebrate && <Celebration kind={celebrate} onDone={endCelebration} />}
+
+      <nav className="crumb" aria-label="Breadcrumb">
+        <Link to="/home">My learning</Link>
+        <span aria-hidden> / </span>
+        <span>{lesson.subjectName}</span>
+        <span aria-hidden> / </span>
+        <b>{lesson.chapterName}</b>
+      </nav>
 
       <header className="topbar">
         <div>
-          <Link to="/home" className="back">← My subjects</Link>
+          <Link to="/home" className="back">← My learning</Link>
           <h1>{lesson.chapterName}</h1>
           <p className="muted">Grade {lesson.grade} · {lesson.subjectName}</p>
         </div>

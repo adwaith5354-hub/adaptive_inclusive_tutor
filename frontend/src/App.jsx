@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage.jsx'
 import SignupPage from './pages/SignupPage.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import LearningPage from './pages/LearningPage.jsx'
+import AppShell from './components/AppShell.jsx'
 
 export default function App() {
   const [student, setStudent] = useState(null)
@@ -47,13 +48,14 @@ export default function App() {
 
   const authed = (el) => (student ? el : <Navigate to="/login" />)
   const guest = (el) => (student ? <Navigate to="/home" /> : el)
+  const shell = (el) => (<AppShell student={student} onLogout={onLogout}>{el}</AppShell>)
 
   return (
     <Routes>
       <Route path="/login" element={guest(<LoginPage onAuthenticated={onAuthenticated} />)} />
       <Route path="/signup" element={guest(<SignupPage onAuthenticated={onAuthenticated} />)} />
-      <Route path="/home" element={authed(<Dashboard student={student} onLogout={onLogout} />)} />
-      <Route path="/learn/:chapterId" element={authed(<LearningPage student={student} />)} />
+      <Route path="/home" element={authed(shell(<Dashboard student={student} />))} />
+      <Route path="/learn/:chapterId" element={authed(shell(<LearningPage student={student} />))} />
       <Route path="*" element={<Navigate to={student ? '/home' : '/login'} />} />
     </Routes>
   )

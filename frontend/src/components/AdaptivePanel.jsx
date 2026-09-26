@@ -16,7 +16,8 @@ export default function AdaptivePanel({ progress, decision, learning }) {
 
   return (
     <section className="card adaptive">
-      <h2>🧠 How your tutor is adapting</h2>
+      <h2>✨ AI Insights</h2>
+      <p className="ai-sub">How your tutor is adapting to you.</p>
 
       <div className="stats">
         <Stat label="Attempted" value={progress?.questionsAttempted ?? 0} />

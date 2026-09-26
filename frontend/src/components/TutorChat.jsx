@@ -19,7 +19,7 @@ export default function TutorChat({ messages, suggestions, onSend, readAloud, bu
 
   return (
     <section className="card chat" aria-label="AI tutor chat">
-      <h2>🤖 Your tutor</h2>
+      <h2>💬 Chat with AI</h2>
       <div className="messages">
         {messages.map((m, i) => (
           <div key={i} className={`msg ${m.from}`}>
